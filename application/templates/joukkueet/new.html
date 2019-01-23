@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('joukkueet_create') }}">
+	<input type="text" name="nimi"/>
+	<input type="text" name="kotipaikka"/>
+	<input type="text" name="perustettu"/>
+	<input type="submit" value="Lisää joukkue"/>
+</form>
+{% endblock %}
