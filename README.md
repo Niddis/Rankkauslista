@@ -8,14 +8,14 @@ Rankkauslista pitää kirjaa turnauksista ja niissä jaettavista pisteistä, tur
 
 Toimintoja:
 
-*ylläpidon kirjautuminen
-*joukkueen rekisteröinti
-*joukkueen tietojen muokkaus ja poisto
-*turnaukseen ilmoittautuminen
-*turnaukseen ilmoittautuneiden rankkaus
-*turnaustulosten kirjaus ja korjaus
-*yleinen rankkaustilanteen katselu
-*lista turnaukseen osallistuneista joukkueista ja heidän sijoittumisensa sekä turnauksen rankkauspistesumma
+* ylläpidon kirjautuminen  
+* joukkueen rekisteröinti  
+* joukkueen tietojen muokkaus ja poisto  
+* turnaukseen ilmoittautuminen  
+* turnaukseen ilmoittautuneiden rankkaus  
+* turnaustulosten kirjaus ja korjaus  
+* yleinen rankkaustilanteen katselu  
+* lista turnaukseen osallistuneista joukkueista ja heidän sijoittumisensa sekä turnauksen rankkauspistesumma
 
 [Linkki herokuun](https://rankkauslista.herokuapp.com/)
 
