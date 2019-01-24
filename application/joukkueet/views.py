@@ -5,9 +5,9 @@ from flask import render_template, request
 def joukkueet_form():
     return render_template("joukkueet/new.html")
 
-@app.route("/joukkueet/", methods=["POST"])
+@app.route("/joukkueet", methods=["POST"])
 def joukkueet_create():
-    print(request.form.get("nimi"), request.form.get("kotipaikka"), request.form.get("perustettu"))
+    print(request.form.get("nimi"))
 
     return "hello world!"
     

@@ -7,15 +7,9 @@ class Joukkue(db.Model):
     onupdate=db.func.current_timestamp())
 
     nimi = db.Column(db.String(144), nullable=False)
-    kotipaikka = db.Column(db.String(144), nullable=False)
-    perustettu = db.Column(db.String(144), nullable=False)
-    rankkauspisteet = db.Column(db.Integer, nullable=False)
     rankkausarvo = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, nimi, kotipaikka, perustettu):
+    def __init__(self, nimi):
         self.nimi = nimi
-        self.kotipaikka = kotipaikka
-        self.perustettu = perustettu
-        self.rankkauspisteet = 0
         self.rankkausarvo = 0
 

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<table>
+		<tr>
+			<th>Joukkue</th>
+			<th>Rankkausarvo</th>
+		</tr>
+		{% for joukkue in joukkueet %}
+		<tr>
+			<td>{{ joukkue.nimi }}</td>
+			<td>{{ joukkue.rankkausarvo }}</td>
+			<td>
+				<form method="POST" action="{{ url_for('joukkueet_increase_ra', joukkue_id=joukkue.id) }}">
+					<input type="submit" value="Pienennä rankkausarvoa"/>
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
