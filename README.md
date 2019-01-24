@@ -19,6 +19,6 @@ Toimintoja:
 
 [Linkki herokuun](https://rankkauslista.herokuapp.com/)
 
-[Tietokantakaaviot](../blob/master/documentation/tietokantakaaviot)
+[Tietokantakaaviot](../master/documentation/tietokantakaaviot.md)
 
-[Käyttötapaukset](../blob/master/documentation/kayttotapaukset)
+[Käyttötapaukset](../master/documentation/kayttotapaukset.md)
