@@ -8,4 +8,5 @@ db = SQLAlchemy(app)
 
 from application import views
 
+
 db.create_all()
