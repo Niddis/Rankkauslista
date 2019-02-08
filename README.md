@@ -23,9 +23,11 @@ Toimintoja:
 
 [Käyttötapaukset](../master/documentation/kayttotapaukset.md)
 
+[Tietokantakaavio](.../master/documentation/tietokantakaavio.png)
+
 ### Huomioita
 
 Sovelluksessa ei ole erillistä rekisteröitymistoimintoa. Sovelluksen ideana on, että kuka tahansa voi selata turnauksia, joukkueita ja tuloksia, mutta lisäämiseen tai muokkaamiseen tarvitaan tunnukset, joita pitää erikseen pyytää ylläpidolta. Voit tutustua sovelluksen toimintaan kirjautumalla sisään testitunnuksilla.
 
-käyttäjätunnus: test
-salasana: testuser1
+* käyttäjätunnus: test
+* salasana: testuser1
