@@ -17,8 +17,15 @@ Toimintoja:
 * yleinen rankkaustilanteen katselu  
 * lista turnaukseen osallistuneista joukkueista ja heidän sijoittumisensa sekä turnauksen rankkauspistesumma
 
-[Linkki herokuun](https://rankkauslista.herokuapp.com/)
+[Sovellus Herokussa](https://rankkauslista.herokuapp.com/)
 
-[Tietokantakaaviot](../master/documentation/tietokantakaaviot.md)
+[CREATE TABLE -lauseet](../master/documentation/tietokantakaaviot.md)
 
 [Käyttötapaukset](../master/documentation/kayttotapaukset.md)
+
+### Huomioita
+
+Sovelluksessa ei ole erillistä rekisteröitymistoimintoa. Sovelluksen ideana on, että kuka tahansa voi selata turnauksia, joukkueita ja tuloksia, mutta lisäämiseen tai muokkaamiseen tarvitaan tunnukset, joita pitää erikseen pyytää ylläpidolta. Voit tutustua sovelluksen toimintaan kirjautumalla sisään testitunnuksilla.
+
+käyttäjätunnus: test
+salasana: testuser1
