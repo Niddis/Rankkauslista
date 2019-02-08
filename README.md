@@ -23,7 +23,7 @@ Toimintoja:
 
 [Käyttötapaukset](../master/documentation/kayttotapaukset.md)
 
-[Tietokantakaavio](.../master/documentation/tietokantakaavio.png)
+[Tietokantakaavio](../master/documentation/tietokantakaavio.png)
 
 ### Huomioita
 
