@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 
 {% block body %}
-	<table>
+	<table class="table table-striped text-center">
+		<thead class="thead-dark">
 		<tr>
-			<th>Joukkue</th>
-			<th>Kotipaikka</th>
-			<th>Kokonaispisteet</th>
+			<th scope="col">Joukkue</th>
+			<th scope="col">Kotipaikka</th>
+			<th scope="col">Kokonaispisteet</th>
 		</tr>
+	</thead>
+	<tbody>
 		{% for joukkue in joukkueet %}
 		<tr>
 			<td>{{ joukkue.name }}</td>
@@ -14,5 +17,6 @@
 			<td>{{ joukkue.points }}</td>
 		</tr>
 		{% endfor %}
+	</tbody>
 	</table>
 {% endblock %}

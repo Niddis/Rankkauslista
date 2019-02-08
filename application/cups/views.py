@@ -2,6 +2,7 @@ from application import app, db
 from flask import render_template, request, url_for, redirect
 from application.cups.models import Cup
 from application.cups.forms import CupForm
+from flask_login import login_required
 
 
 @app.route("/cups", methods=["GET"])
@@ -9,10 +10,12 @@ def cups_index():
     return render_template("cups/list.html", cups = Cup.query.all())
 
 @app.route("/cups/new/")
+@login_required
 def cups_form():
     return render_template("cups/new.html", form = CupForm())
 
 @app.route("/cups", methods=["POST"])
+@login_required
 def cups_create():
     form = CupForm(request.form)
 

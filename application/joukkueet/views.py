@@ -9,12 +9,12 @@ def joukkueet_index():
     return render_template("joukkueet/list.html", joukkueet = Joukkue.list_teams_with_points())
 
 @app.route("/joukkueet/new/")
-
+@login_required
 def joukkueet_form():
     return render_template("joukkueet/new.html", form = JoukkueForm())
 
 @app.route("/joukkueet", methods=["POST"])
-
+@login_required
 def joukkueet_create():
     form = JoukkueForm(request.form)
 

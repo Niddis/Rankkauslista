@@ -1,20 +1,24 @@
 {% extends "layout.html" %}
 
 {% block body %}
-	<table>
-		<tr>
-			<th>Turnaus</th>
-      <th>alkaa</th>
-      <th>päättyy</th>
-      <th>pisteet</th>
-		</tr>
-		{% for cup in cups %}
-		<tr>
-			<td>{{ cup.name }}</td>
-      <td>{{ cup.start_time }}</td>
-      <td>{{ cup.end_time }}</td>
-			<td>{{ cup.points }}</td>
-		</tr>
-		{% endfor %}
+	<table class="table table-striped text-center">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Turnaus</th>
+      	<th scope="col">Alkaa</th>
+      	<th scope="col">Päättyy</th>
+      	<th scope="col"> Jaettavat pisteet</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cup in cups %}
+			<tr >
+				<td >{{ cup.name }}</td>
+      	<td>{{ cup.start_time }}</td>
+      	<td>{{ cup.end_time }}</td>
+				<td>{{ cup.points }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
 	</table>
 {% endblock %}
