@@ -16,7 +16,12 @@
 
 		<ul>
 			<li><a href="{{ url_for('joukkueet_index') }}">Näytä joukkueet</a></li>
+			<li><a href="{{ url_for('cups_index') }}">Näytä turnaukset</a></li>
 			<li><a href="{{ url_for('joukkueet_form') }}">Lisää joukkue</a></li>
+			<li><a href="{{ url_for('cups_form') }}">Lisää turnaus</a></li>
+			<li><a href="{{ url_for('results_index') }}">Näytä tulokset</a></li>
+			<li><a href="{{ url_for('result_form') }}">Lisää tulos</a></li>
+			
 		</ul>
 
 		{% block body %}

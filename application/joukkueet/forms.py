@@ -3,6 +3,7 @@ from wtforms import StringField, validators
 
 class JoukkueForm(FlaskForm):
     name = StringField("Joukkueen nimi", [validators.Length(min=3)])
+    home = StringField("Kotipaikka", [validators.Length(min=3)])
 
     class Meta:
         csrf = False

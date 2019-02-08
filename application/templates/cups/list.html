@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<table>
+		<tr>
+			<th>Turnaus</th>
+      <th>alkaa</th>
+      <th>päättyy</th>
+      <th>pisteet</th>
+		</tr>
+		{% for cup in cups %}
+		<tr>
+			<td>{{ cup.name }}</td>
+      <td>{{ cup.start_time }}</td>
+      <td>{{ cup.end_time }}</td>
+			<td>{{ cup.points }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

@@ -4,17 +4,14 @@
 	<table>
 		<tr>
 			<th>Joukkue</th>
-			<th>Rankkausarvo</th>
+			<th>Kotipaikka</th>
+			<th>Kokonaispisteet</th>
 		</tr>
 		{% for joukkue in joukkueet %}
 		<tr>
-			<td>{{ joukkue.nimi }}</td>
-			<td>{{ joukkue.rankkausarvo }}</td>
-			<td>
-				<form method="POST" action="{{ url_for('joukkueet_increase_ra', joukkue_id=joukkue.id) }}">
-					<input type="submit" value="Pienennä rankkausarvoa"/>
-				</form>
-			</td>
+			<td>{{ joukkue.name }}</td>
+			<td>{{ joukkue.home }}</td>
+			<td>{{ joukkue.points }}</td>
 		</tr>
 		{% endfor %}
 	</table>

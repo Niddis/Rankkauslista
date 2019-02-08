@@ -1,15 +1,30 @@
 from application import db
+from application.models import Base
+from sqlalchemy.sql import text
 
-class Joukkue(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
+class Joukkue(Base):
 
-    nimi = db.Column(db.String(144), nullable=False)
-    rankkausarvo = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String(144), nullable=False)
+    home = db.Column(db.String(144), nullable=False)
 
-    def __init__(self, nimi):
-        self.nimi = nimi
-        self.rankkausarvo = 0
+    results = db.relationship("Result", backref='joukkue', lazy=True)
+
+    def __init__(self, name):
+        self.name = name
+        self.home = "Helsinki"
+
+    @staticmethod
+    def list_teams_with_points():
+        stmt = text("SELECT Joukkue.name, Joukkue.home, SUM(Result.points) AS points"
+                    " FROM Joukkue"
+                    " LEFT JOIN Result ON Joukkue.id = Result.joukkue_id"
+                    " GROUP BY Joukkue.name"
+                    " ORDER BY points DESC")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[0], "home":row[1], "points":row[2]})
+
+        return response
 
