@@ -46,9 +46,5 @@ class Cup(Base):
         response = []
         for row in res:
             response.append({"name":row[0], "start":row[1], "end":row[2], "points":row[3], "teams":row[4]})
-        
-        for result in response:
-            result["start"] = result["start"][:16]
-            result["end"] = result["end"][:16]
 
         return response

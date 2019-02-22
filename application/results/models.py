@@ -50,7 +50,7 @@ class Result(Base):
         stmt = text("SELECT Cup.name, Result.rank, Result.points, Result.id, Cup.account_id"
                     " FROM Team, Result, Cup"
                     " WHERE (Team.id = :id AND Result.rank != 0)"
-                    " AND Team.id = Result.joukkue_id"
+                    " AND Team.id = Result.team_id"
                     " AND Result.cup_id = Cup.id").params(id=id)
         res = db.engine.execute(stmt)
 
