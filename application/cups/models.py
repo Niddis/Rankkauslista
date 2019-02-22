@@ -39,7 +39,7 @@ class Cup(Base):
                     " FROM Cup"
                     " LEFT JOIN Result ON Cup.id = Result.cup_id"
                     " WHERE Cup.start_time >= CURRENT_TIMESTAMP"
-                    " GROUP BY Cup.name"
+                    " GROUP BY Cup.name, Cup.start_time"
                     " ORDER BY Cup.start_time")
         res = db.engine.execute(stmt)
 
