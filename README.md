@@ -50,9 +50,9 @@ git clone https://github.com/Niddis/Rankkauslista.git
 cd Rankkauslista
 ```
 3. liitä kansio omaan github-repositorioosi
-```git
+``
 git remote add origin _oman_ _repositoriosi_ _url_
-```
+``
 4. pushaa esim. Herokuun
 
 ### Paikallinen versio
