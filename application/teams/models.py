@@ -18,7 +18,7 @@ class Team(Base):
         stmt = text("SELECT Team.name, Team.home, SUM(Result.points) AS points, Team.id"
                     " FROM Team"
                     " LEFT JOIN Result ON Team.id = Result.team_id"
-                    " GROUP BY Team.name, Team.home"
+                    " GROUP BY Team.name, Team.home, Team.id"
                     " ORDER BY points DESC")
         res = db.engine.execute(stmt)
 
