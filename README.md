@@ -8,10 +8,10 @@ Rankkauslista pitää kirjaa turnauksista ja niissä jaettavista pisteistä, tur
 
 Toimintoja:
 
-* ylläpidon kirjautuminen  
-* joukkueen rekisteröinti  
-* joukkueen tietojen muokkaus ja poisto  
-* turnaukseen ilmoittautuminen  
+* ylläpidon kirjautuminen
+* turnausjärjestäjän kirjautuminen
+* joukkueen luominen, tietojen muokkaus ja poisto  
+* joukkueiden lisääminen turnaukseen  
 * turnaukseen ilmoittautuneiden rankkaus  
 * turnaustulosten kirjaus ja korjaus  
 * yleinen rankkaustilanteen katselu  
@@ -25,9 +25,55 @@ Toimintoja:
 
 [Tietokantakaavio](../master/documentation/tietokantakaavio.png)
 
-### Huomioita
+## Sovelluksen käyttö
 
 Sovelluksessa ei ole erillistä rekisteröitymistoimintoa. Sovelluksen ideana on, että kuka tahansa voi selata turnauksia, joukkueita ja tuloksia, mutta lisäämiseen tai muokkaamiseen tarvitaan tunnukset, joita pitää erikseen pyytää ylläpidolta. Voit tutustua sovelluksen toimintaan kirjautumalla sisään testitunnuksilla.
 
+Turnausjärjestäjän tunnukset: turnausten luominen, muokkaaminen ja poistaminen, joukkueiden lisääminen turnaukseen sekä kyseisen turnauksen tulosten päivittäminen ja poistaminen.
 * käyttäjätunnus: test
 * salasana: testuser1
+
+Ylläpitäjän tunnukset: kaikkien joukkueiden, turnausten ja tulosten luominen, päivittäminen ja poistaminen.
+* käyttäjätunnus: admin
+* salasana: adminuser1
+
+## Sovelluksen asentaminen
+
+### Tuotantoversio
+
+1. kloonaa lähdetiedostot omalle koneellesi haluamaasi kansioon
+```git
+git clone https://github.com/Niddis/Rankkauslista.git
+```
+2. mene kloonatun repositorion hakemistoon
+```git
+cd Rankkauslista
+```
+3. liitä kansio omaan github-repositorioosi
+```git
+git remote add origin _oman repositoriosi url_
+```
+4. pushaa esim. Herokuun
+
+### Paikallinen versio
+
+1. kloonaa lähdetiedostot omalle koneellesi haluamaasi kansioon
+```git
+git clone https://github.com/Niddis/Rankkauslista.git
+```
+2. mene kloonatun repositorion hakemistoon
+```git
+cd Rankkauslista
+```
+3. luo hakemistoon Python-virtuaaliympäristö
+```
+python3 -m venv venv
+```
+4. käynnistä virtuaaliympäristö
+```
+source venv/bin/activate
+```
+5. käynnistä sovellus
+```
+python3 run.py
+```
