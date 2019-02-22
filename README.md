@@ -41,7 +41,7 @@ Ylläpitäjän tunnukset: kaikkien joukkueiden, turnausten ja tulosten luominen,
 
 ### Tuotantoversio
 
-1. kloonaa lähdetiedostot omalle koneellesi haluamaasi kansioon
+1. kloonaa lähdetiedostot omalle koneellesi haluamaasi hakemistoon
 ```git
 git clone https://github.com/Niddis/Rankkauslista.git
 ```
@@ -51,13 +51,13 @@ cd Rankkauslista
 ```
 3. liitä kansio omaan github-repositorioosi
 ```git
-git remote add origin _oman repositoriosi url_
+git remote add origin _oman_ _repositoriosi_ _url_
 ```
 4. pushaa esim. Herokuun
 
 ### Paikallinen versio
 
-1. kloonaa lähdetiedostot omalle koneellesi haluamaasi kansioon
+1. kloonaa lähdetiedostot omalle koneellesi haluamaasi hakemistoon
 ```git
 git clone https://github.com/Niddis/Rankkauslista.git
 ```
