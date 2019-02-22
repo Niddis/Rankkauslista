@@ -19,7 +19,7 @@ Toimintoja:
 
 [Sovellus Herokussa](https://rankkauslista.herokuapp.com/)
 
-[CREATE TABLE -lauseet](../master/documentation/tietokantakaaviot.md)
+[CREATE TABLE -lauseet](../master/documentation/CreateTable_lauseet.md)
 
 [Käyttötapaukset](../master/documentation/kayttotapaukset.md)
 
