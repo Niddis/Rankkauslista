@@ -16,7 +16,7 @@
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('joukkueet_index') }}">Näytä joukkueet</a>
+						<a class="nav-link" href="{{ url_for('teams_index') }}">Näytä joukkueet</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('cups_index') }}">Näytä turnaukset</a>
@@ -24,15 +24,17 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('results_index') }}">Näytä osallistujat/tulokset</a>
 					</li>
+					{% if current_user.is_authenticated and current_user.isAdmin == True %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('joukkueet_form') }}">Lisää joukkue</a>
+						<a class="nav-link" href="{{ url_for('teams_form') }}">Lisää joukkue</a>
 					</li>
+					{% endif %}
+					{% if current_user.is_authenticated %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ url_for('cups_form') }}">Lisää turnaus</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url_for('result_form') }}">Lisää osallistuja</a>
-					</li>
+					{% endif %}
+					
 				</ul>
 				<div class="form-inline mt-2 mt-md-0">
 					{% if current_user.is_authenticated %}

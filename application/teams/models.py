@@ -2,12 +2,12 @@ from application import db
 from application.models import Base
 from sqlalchemy.sql import text
 
-class Joukkue(Base):
+class Team(Base):
 
     name = db.Column(db.String(144), nullable=False)
     home = db.Column(db.String(144), nullable=False)
 
-    results = db.relationship("Result", backref='joukkue', lazy=True)
+    results = db.relationship("Result", backref='team', lazy=True)
 
     def __init__(self, name):
         self.name = name
@@ -15,16 +15,16 @@ class Joukkue(Base):
 
     @staticmethod
     def list_teams_with_points():
-        stmt = text("SELECT Joukkue.name, Joukkue.home, SUM(Result.points) AS points"
-                    " FROM Joukkue"
-                    " LEFT JOIN Result ON Joukkue.id = Result.joukkue_id"
-                    " GROUP BY Joukkue.name, Joukkue.home"
+        stmt = text("SELECT Team.name, Team.home, SUM(Result.points) AS points, Team.id"
+                    " FROM Team"
+                    " LEFT JOIN Result ON Team.id = Result.team_id"
+                    " GROUP BY Team.name, Team.home"
                     " ORDER BY points DESC")
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"name":row[0], "home":row[1], "points":row[2]})
+            response.append({"name":row[0], "home":row[1], "points":row[2], "id":row[3]})
 
         return response
 

@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<table class="table table-striped text-center">
+		<thead class="thead-dark">
+		<tr>
+			<th scope="col">Joukkue</th>
+			<th scope="col">Kotipaikka</th>
+			<th scope="col">Kokonaispisteet</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for team in teams %}
+		<tr>
+			<td>{{ team.name }}</td>
+			<td>{{ team.home }}</td>
+			<td>{{ team.points }}</td>
+			<td>
+				<form method="GET" action="{{ url_for('result_form_for_team', id=team.id) }}">
+					<input type="submit" value="sijoitukset"/>
+				</form>
+			</td>
+			{% if current_user.isAdmin == True %}
+				<td>
+					<form method="POST" action="{{ url_for('teams_delete', team_id=team.id) }}">
+						<input type="submit" value="poista"/>
+					</form>
+				</td>
+				<td>
+					<form method="POST" action="{{ url_for('teams_edit', team_id=team.id) }}">
+						<input type="submit" value="muokkaa"/>
+					</form>
+				</td>
+				{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+	{% if current_user.isAdmin == True %}
+	<p>Joukkueen poistaminen onnistuu vain, jos joukkue ei ole osallistunut yhteenkään 
+		turnaukseen. Jos haluat poistaa joukkueen, jolla on sijoituksia, poista ensin
+		 jokainen sijoitus.
+	</p>
+	{% endif %}
+{% endblock %}

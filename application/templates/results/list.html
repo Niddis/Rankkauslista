@@ -14,34 +14,10 @@
 		{% for r in results %}
 		<tr>
 			<td>{{ r.cup }}</td>
-      <td>{{ r.joukkue }}</td>
+      <td>{{ r.team }}</td>
       <td>{{ r.rank }}</td>
 			<td>{{ r.points }}</td>
-			<td>
-				<form method="POST" action="{{ url_for('results_dec_rank', result_id=r.id) }}">
-					<input type="submit" value="Nosta sijoitusta"/>
-				</form>
-			</td>
-			<td>
-				<form method="POST" action="{{ url_for('results_inc_rank', result_id=r.id) }}">
-					<input type="submit" value="Laske sijoitusta"/>
-				</form>
-			</td>
-			<td>
-				<form method="POST" action="{{ url_for('results_inc_points', result_id=r.id) }}">
-					<input type="submit" value="Lisää pisteitä"/>
-				</form>
-			</td>
-			<td>
-				<form method="POST" action="{{ url_for('results_dec_points', result_id=r.id) }}">
-					<input type="submit" value="Vähennä pisteitä"/>
-				</form>
-			</td>
-			<td>
-				<form method="POST" action="{{ url_for('results_delete', result_id=r.id) }}">
-					<input type="submit" value="Poista"/>
-				</form>
-			</td>
+			
 		</tr>
 		{% endfor %}
 	</tbody>

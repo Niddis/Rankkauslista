@@ -1,32 +1,66 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{ url_for('results_create') }}">
-	
+{{ error }}
+<h2>{{ cup.name }}</h2>
+<br />
+{% if current_user.id == cup.account_id or current_user.isAdmin == True %}
+<form method="POST" action="{{ url_for('results_create', id=cup.id) }}">
+
 	<table>
+
 		<tr>
 			<td>
-				{{ form.cup_name.label }}
+				{{ form.team_name.label }}
 			</td>
 			<td>
-				{{ form.cup_name }}
+				{{ form.team_name }}
 			</td>
-			
+
 		</tr>
 		<tr>
-				<td>
-					{{ form.joukkue_name.label }}
-				</td>
-				<td>
-					{{ form.joukkue_name }}
-				</td>
-				
-			</tr>
-		<tr>
 			<td colspan="2">
-				<input type="submit" value="Lisää tulos"/>
+				<input type="submit" value="Lisää osallistuja" />
 			</td>
 		</tr>
 	</table>
 </form>
+{% endif %}
+<br />
+<br />
+<table class="table table-striped table-sm text-center">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Joukkue</th>
+			<th scope="col">Sijoitus</th>
+			<th scope="col">Pisteet</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for r in results %}
+		<tr>
+			<td>{{ r.team }}</td>
+			<td>{{ r.rank }}</td>
+			<td>{{ r.points }}</td>
+			{% if current_user.id == r.aid or current_user.isAdmin == True %}
+			<td>
+				<form method="POST" action="{{ url_for('results_edit_rank', result_id=r.rid) }}">
+					<input type="submit" value="Muokkaa sijoitusta" />
+				</form>
+			</td>
+			<td>
+				<form method="POST" action="{{ url_for('results_edit_points', result_id=r.rid) }}">
+					<input type="submit" value="Muokkaa pisteitä" />
+				</form>
+			</td>
+			<td>
+				<form method="POST" action="{{ url_for('results_delete', result_id=r.rid) }}">
+					<input type="submit" value="Poista" />
+				</form>
+			</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
 {% endblock %}

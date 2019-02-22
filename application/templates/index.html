@@ -2,7 +2,30 @@
 
 {% block body %}
 	<p>
-		Tervetuloa rankkauslista-sivulle! Täällä voit luoda turnauksia ja joukkueita,
-		lisätä joukkueita turnauksien osallistujiksi ja pitää kirjaa turnauksen tuloksista. 
+		Tervetuloa rankkauslista-sivulle! Täältä löydät tulevat ja menneet turnaukset sekä niiden tulokset. 
+		Voit myös tarkastella joukkueiden rankkaustilannetta sekä sijoituksia. 
 	</p>
+	<h3>Tulevat turnaukset</h3>
+	<table class="table table-striped text-center">
+		<thead class="thead-dark">
+		<tr>
+			<th scope="col">Turnaus</th>
+			<th scope="col">Alkaa</th>
+			<th scope="col">Päättyy</th>
+			<th scope="col">Jaettavat pisteet</th>
+			<th scope="col">Osallistujia</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for cup in cups %}
+		<tr>
+			<td>{{ cup.name }}</td>
+			<td>{{ cup.start }}</td>
+			<td>{{ cup.end }}</td>
+			<td>{{ cup.points }}</td>
+			<td>{{ cup.teams }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	</table>
 {% endblock %}

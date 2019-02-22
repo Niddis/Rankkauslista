@@ -8,11 +8,15 @@ class User(Base):
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable= False)
     password = db.Column(db.String(144), nullable=False)
+    isAdmin = db.Column(db.Boolean, nullable=False)
+
+    cups = db.relationship("Cup", backref='account', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.password = password
+        self.isAdmin = False
 
     def get_id(self):
         return self.id

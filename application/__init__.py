@@ -7,15 +7,15 @@ import os
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///joukkueet.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///rankkauslista.db"
     app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
 from application import views
 
-from application.joukkueet import views
-from application.joukkueet import models
+from application.teams import views
+from application.teams import models
 from application.auth import models
 from application.auth import views
 from application.cups import views

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{{ error }}
 	<table class="table table-striped text-center">
 		<thead class="thead-dark">
 			<tr>
@@ -17,6 +18,23 @@
       	<td>{{ cup.start_time }}</td>
       	<td>{{ cup.end_time }}</td>
 				<td>{{ cup.points }}</td>
+				<td>
+					<form method="GET" action="{{ url_for('result_form', id=cup.id) }}">
+						<input type="submit" value="osallistujat/tulokset"/>
+					</form>
+				</td>
+				{% if current_user.id == cup.account_id or current_user.isAdmin == True %}
+				<td>
+					<form method="POST" action="{{ url_for('cups_delete', cup_id=cup.id) }}">
+						<input type="submit" value="poista"/>
+					</form>
+				</td>
+				<td>
+					<form method="POST" action="{{ url_for('cups_edit', cup_id=cup.id) }}">
+						<input type="submit" value="muokkaa"/>
+					</form>
+				</td>
+				{% endif %}
 			</tr>
 			{% endfor %}
 		</tbody>
