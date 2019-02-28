@@ -15,17 +15,29 @@ class Result(Base):
         self.points = 0
 
     @staticmethod
-    def list_results():
-        stmt = text("SELECT Team.name, Cup.name, Result.rank, Result.points, Result.id, Cup.account_id"
+    def list_results(sorter):
+        orderByColumn = "cname DESC"
+
+        # sqlalchemy ei hyväksy paramsia ORDER BY:lle
+        if sorter == "points":
+            orderByColumn = "points DESC"
+        elif sorter == "tname":
+            orderByColumn = "tname DESC"
+        elif sorter == "rank":
+            orderByColumn = "rank ASC"
+        
+
+        stmt = text("SELECT Team.name AS tname, Cup.name AS cname, Result.rank AS rank, Result.points AS points"
                     " FROM Team, Result, Cup"
-                    " WHERE Team.id = Result.team_id"
+                    " WHERE Result.rank != 0"
+                    " AND Team.id = Result.team_id"
                     " AND Result.cup_id = Cup.id"
-                    " ORDER BY Cup.name, Result.rank")
+                    " ORDER BY " + orderByColumn)
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({"team":row[0], "cup":row[1], "rank":row[2], "points":row[3], "rid":row[4], "cid":row[5]})
+            response.append({"team":row[0], "cup":row[1], "rank":row[2], "points":row[3]})
 
         return response
 

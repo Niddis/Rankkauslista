@@ -21,4 +21,7 @@
 		</div>
 	</div>
 </form>
+<form method="GET" action="{{ url_for('result_form', id=cup.id) }}">
+	<button type="submit" value="Takaisin" class="btn btn-danger">Takaisin</button>
+</form>
 {% endblock %}

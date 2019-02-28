@@ -57,9 +57,18 @@ def cups_edit(cup_id):
     if c.account_id != current_user.id and current_user.isAdmin == False:
         return render_template("cups/list.html", cups = Cup.query.all(), error = 'Sinulla ei ole oikeuksia muokata tätä turnausta')
 
-    form = CupEditForm(request.form)
+    if request.method == 'GET':
+        form = CupForm()
+        form.name.data = c.name
+        form.start_time.data = c.start_time
+        form.end_time.data = c.end_time
+        form.points.data = c.points
+        return render_template("cups/edit.html", form = form)
+    
+    form = CupForm(request.form)
 
     if request.method == "POST" and form.validate():
+        c.name = form.name.data
         c.start_time = form.start_time.data
         c.end_time = form.end_time.data
         c.points = form.points.data

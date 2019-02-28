@@ -20,20 +20,6 @@ class Cup(Base):
         self.points = 100
 
     @staticmethod
-    def list_cups():
-        stmt = text("SELECT Team.name, Cup.name, Result.rank, Result.points, Result.id, Cup.account_id"
-                    " FROM Team, Result, Cup"
-                    " WHERE Team.id = Result.joukkue_id"
-                    " AND Result.cup_id = Cup.id")
-        res = db.engine.execute(stmt)
-
-        response = []
-        for row in res:
-            response.append({"team":row[0], "cup":row[1], "rank":row[2], "points":row[3], "rid":row[4], "cid":row[5]})
-
-        return response
-
-    @staticmethod
     def list_cups_with_teams():
         stmt = text("SELECT Cup.name, Cup.start_time, Cup.end_time, Cup.points, COUNT(Result.team_id) AS teams"
                     " FROM Cup"

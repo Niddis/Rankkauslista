@@ -6,24 +6,16 @@
 <br />
 {% if current_user.id == cup.account_id or current_user.isAdmin == True %}
 <form method="POST" action="{{ url_for('results_create', id=cup.id) }}">
-
-	<table>
-
-		<tr>
-			<td>
-				{{ form.team_name.label }}
-			</td>
-			<td>
-				{{ form.team_name }}
-			</td>
-
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="submit" value="Lisää osallistuja" />
-			</td>
-		</tr>
-	</table>
+	<div class="form-group">
+		{{ form.team_name.label }}
+		<div >{{ form.team_name(class="form-control") }}</div>	
+	</div>
+	<ul>
+		{% for error in form.team_name.errors %}
+		<li>{{ error }}</li>
+		{% endfor %}
+	</ul>
+	<button type="submit" value="Lisää osallistuja" class="btn btn-primary">Lisää osallistuja</button>
 </form>
 {% endif %}
 <br />
@@ -44,18 +36,18 @@
 			<td>{{ r.points }}</td>
 			{% if current_user.id == r.aid or current_user.isAdmin == True %}
 			<td>
-				<form method="POST" action="{{ url_for('results_edit_rank', result_id=r.rid) }}">
-					<input type="submit" value="Muokkaa sijoitusta" />
+				<form method="GET" action="{{ url_for('results_edit_rank', result_id=r.rid) }}">
+					<button type="submit" value="Muokkaa sijoitusta" class="btn btn-outline-warning">Muokkaa sijoitusta</button>
 				</form>
 			</td>
 			<td>
-				<form method="POST" action="{{ url_for('results_edit_points', result_id=r.rid) }}">
-					<input type="submit" value="Muokkaa pisteitä" />
+				<form method="GET" action="{{ url_for('results_edit_points', result_id=r.rid) }}">
+					<button type="submit" value="Muokkaa pisteitä" class="btn btn-outline-warning">Muokkaa pisteitä</button>
 				</form>
 			</td>
 			<td>
 				<form method="POST" action="{{ url_for('results_delete', result_id=r.rid) }}">
-					<input type="submit" value="Poista" />
+					<button type="submit" value="Poista" class="btn btn-outline-danger">Poista</button>
 				</form>
 			</td>
 			{% endif %}

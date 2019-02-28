@@ -1,14 +1,22 @@
 from application import app, db
 from flask import render_template, request, url_for, redirect
-from application.results.forms import ResultForm, ResultEditRankForm, ResultEditPointsForm
+from application.results.forms import ResultForm, ResultEditRankForm, ResultEditPointsForm, ListResultsForm
 from application.teams.models import Team
 from application.cups.models import Cup
 from application.results.models import Result
 from flask_login import login_required, current_user
 
-@app.route("/results", methods=["GET"])
+@app.route("/results", methods=["GET", "POST"])
 def results_index():
-    return render_template("results/list.html", results = Result.list_results())
+    form = ListResultsForm()
+
+    if request.method == "POST":
+        form = ListResultsForm(request.form)
+        select = form.selected.data
+        return render_template("results/list.html", form=form, results = Result.list_results(select))
+    
+    return render_template("results/list.html", form=form, results = Result.list_results('points'))
+    
 
 @app.route("/results/new/<id>", methods=["GET"])
 #@login_required
@@ -25,12 +33,16 @@ def result_form_for_team(id):
 @login_required
 def results_create(id):
     c = Cup.query.get(id)
-    form = ResultForm(request.form)
 
     if c.account_id != current_user.id:
         return redirect(url_for("result_form", id=id))
         
     form = ResultForm(request.form)
+    result_exists = Result.query.filter_by(cup_id=id, team_id=form.team_name.data).first()
+
+    if result_exists:
+        return redirect(url_for("result_form", id=id))
+        
     r = Result(form.cup_id.data)
     r.cup_id = id
     r.team_id = form.team_name.data
@@ -79,6 +91,11 @@ def results_edit_points(result_id):
 
     if c.account_id != current_user.id:
         return redirect(url_for("result_form", id=c.id))
+
+    if request.method == 'GET':
+        form = ResultEditPointsForm()
+        form.points.data = r.points
+        return render_template("results/editPoints.html", form = form, cup = c, team = Team.query.get(r.team_id))
 
     form = ResultEditPointsForm(request.form)
     if request.method == "POST" and form.validate():

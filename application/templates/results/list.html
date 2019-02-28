@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<form method="POST" action="{{ url_for('results_index') }}">
+	{{ form.selected.label }} {{ form.selected }}
+	<button type="submit" value="Valitse" class="btn btn-primary">Valitse</button>
+</form>
 	<table class="table table-striped table-sm text-center">
 		<thead class="thead-dark">
 		<tr>

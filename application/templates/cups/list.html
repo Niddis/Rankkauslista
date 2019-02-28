@@ -8,7 +8,8 @@
 				<th scope="col">Turnaus</th>
       	<th scope="col">Alkaa</th>
       	<th scope="col">Päättyy</th>
-      	<th scope="col"> Jaettavat pisteet</th>
+		  <th scope="col"> Jaettavat pisteet</th>
+		  <th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,18 +21,18 @@
 				<td>{{ cup.points }}</td>
 				<td>
 					<form method="GET" action="{{ url_for('result_form', id=cup.id) }}">
-						<input type="submit" value="osallistujat/tulokset"/>
+						<button type="submit" value="osallistujat/tulokset" class="btn btn-primary">osallistujat/tulokset</button>
 					</form>
 				</td>
 				{% if current_user.id == cup.account_id or current_user.isAdmin == True %}
 				<td>
-					<form method="POST" action="{{ url_for('cups_delete', cup_id=cup.id) }}">
-						<input type="submit" value="poista"/>
+					<form method="GET" action="{{ url_for('cups_edit', cup_id=cup.id) }}">
+						<button type="submit" value="muokkaa" class="btn btn-warning">muokkaa</button>
 					</form>
 				</td>
 				<td>
-					<form method="POST" action="{{ url_for('cups_edit', cup_id=cup.id) }}">
-						<input type="submit" value="muokkaa"/>
+					<form method="POST" action="{{ url_for('cups_delete', cup_id=cup.id) }}">
+						<button type="submit" value="poista" class="btn btn-danger">poista</button>
 					</form>
 				</td>
 				{% endif %}

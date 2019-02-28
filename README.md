@@ -73,7 +73,11 @@ python3 -m venv venv
 ```
 source venv/bin/activate
 ```
-5. käynnistä sovellus
+5. asenna riippuvuudet
+```
+pip install -r requirements.txt
+```
+6. käynnistä sovellus
 ```
 python3 run.py
 ```
