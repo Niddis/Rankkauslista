@@ -33,7 +33,7 @@ def result_form_for_team(id):
 def results_create(id):
     c = Cup.query.get(id)
 
-    if c.account_id != current_user.id:
+    if c.account_id != current_user.id and current_user.isAdmin == False:
         return redirect(url_for("result_form", id=id))
         
     form = ResultForm(request.form)
@@ -53,7 +53,7 @@ def results_delete(result_id):
     r = Result.query.get(result_id)
     c = Cup.query.get(r.cup_id)
 
-    if c.account_id != current_user.id:
+    if c.account_id != current_user.id and current_user.isAdmin == False:
         return redirect(url_for("result_form", id=c.id))
     
     db.session.delete(r)
@@ -67,7 +67,7 @@ def results_edit_rank(result_id):
     r = Result.query.get(result_id)
     c = Cup.query.get(r.cup_id)
 
-    if c.account_id != current_user.id:
+    if c.account_id != current_user.id and current_user.isAdmin == False:
         return redirect(url_for("result_form", id=c.id))
 
     form = ResultEditRankForm(obj=r)
@@ -84,7 +84,7 @@ def results_edit_points(result_id):
     r = Result.query.get(result_id)
     c = Cup.query.get(r.cup_id)
 
-    if c.account_id != current_user.id:
+    if c.account_id != current_user.id and current_user.isAdmin == False:
         return redirect(url_for("result_form", id=c.id))
 
     if request.method == 'GET':
