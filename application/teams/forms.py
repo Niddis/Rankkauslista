@@ -13,3 +13,10 @@ class TeamForm(FlaskForm):
     
     class Meta:
         csrf = False
+
+class TeamEditForm(FlaskForm):
+    name = StringField("Joukkueen nimi", [validators.Length(min=3, max=20)])
+    home = StringField("Kotipaikka", [validators.Length(min=3, max=20)])
+
+    class Meta:
+        csrf = False

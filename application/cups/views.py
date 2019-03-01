@@ -2,7 +2,7 @@ from application import app, db
 from flask import render_template, request, url_for, redirect
 from application.cups.models import Cup
 from application.results.models import Result
-from application.cups.forms import CupForm
+from application.cups.forms import CupForm, CupEditForm
 from flask_login import login_required, current_user
 
 
@@ -56,14 +56,14 @@ def cups_edit(cup_id):
         return render_template("cups/list.html", cups = Cup.query.all())
 
     if request.method == 'GET':
-        form = CupForm()
+        form = CupEditForm()
         form.name.data = c.name
         form.start_time.data = c.start_time
         form.end_time.data = c.end_time
         form.points.data = c.points
         return render_template("cups/edit.html", form = form)
     
-    form = CupForm(request.form)
+    form = CupEditForm(request.form)
 
     if request.method == "POST" and form.validate():
         c.name = form.name.data

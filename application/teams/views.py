@@ -2,7 +2,7 @@ from application import app, db
 from flask import render_template, request, url_for, redirect
 from application.teams.models import Team
 from application.results.models import Result
-from application.teams.forms import TeamForm
+from application.teams.forms import TeamForm, TeamEditForm
 from flask_login import login_required, current_user
 
 @app.route("/teams", methods=["GET"])
@@ -24,7 +24,6 @@ def teams_index():
 @app.route("/teams/new/")
 @login_required
 def teams_form():
-
     if current_user.isAdmin == False:
         return redirect(url_for("teams_index"))
 
@@ -72,12 +71,12 @@ def teams_edit(team_id):
     t = Team.query.get(team_id)
 
     if request.method == 'GET':
-        form = TeamForm()
+        form = TeamEditForm()
         form.name.data = t.name
         form.home.data = t.home
         return render_template("teams/edit.html", form = form)
 
-    form = TeamForm(request.form)
+    form = TeamEditForm(request.form)
 
     if request.method == "POST" and form.validate():
         t.name = form.name.data
