@@ -15,7 +15,7 @@ class Team(Base):
 
     @staticmethod
     def list_teams_with_points():
-        stmt = text("SELECT Team.name, Team.home, SUM(Result.points) AS points, Team.id"
+        stmt = text("SELECT Team.name, Team.home, SUM(Result.points), Team.id"
                     " FROM Team"
                     " LEFT JOIN Result ON Team.id = Result.team_id"
                     " GROUP BY Team.name, Team.home, Team.id")

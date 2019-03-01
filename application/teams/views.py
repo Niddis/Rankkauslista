@@ -7,6 +7,9 @@ from flask_login import login_required, current_user
 
 @app.route("/teams", methods=["GET"])
 def teams_index():
+    #Jos joukkueella ei ole yhtään tulosta, joukkueiden järjestäminen 
+    #tulosten perusteella ei toimi Postgresql:llä oikein. Siksi järjestäminen
+    #tapahtuu tässä eikä sql-kyselyn yhteydessä.
     teams = Team.list_teams_with_points()
     for row in teams:
         if row["points"] is None:
@@ -49,8 +52,6 @@ def teams_create():
 @app.route("/teams/delete/<team_id>", methods=["POST"])
 @login_required
 def teams_delete(team_id):
-    #r = Result.query.filter_by(team_id = team_id).first()
-
     if current_user.isAdmin == False:
         return redirect(url_for("teams_index"))
 

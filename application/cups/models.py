@@ -21,7 +21,7 @@ class Cup(Base):
 
     @staticmethod
     def list_cups_with_teams():
-        stmt = text("SELECT Cup.name, Cup.start_time, Cup.end_time, Cup.points, COUNT(Result.team_id) AS teams"
+        stmt = text("SELECT Cup.name, Cup.start_time, Cup.end_time, Cup.points, COUNT(Result.team_id)"
                     " FROM Cup"
                     " LEFT JOIN Result ON Cup.id = Result.cup_id"
                     " WHERE Cup.start_time >= CURRENT_TIMESTAMP"

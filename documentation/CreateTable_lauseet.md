@@ -32,7 +32,7 @@ CREATE TABLE Result (
     id integer PRIMARY KEY,
     date_created datetime,
     date_modified datetime,
-    joukkue_id integer,
+    team_id integer,
     cup_id integer,
     rank integer,
     points integer,

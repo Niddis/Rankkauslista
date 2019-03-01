@@ -2,20 +2,21 @@
 
 Tämä on Helsingin yliopiston Tietokantasovellus -kurssin harjoitustyö.
 
-Harjoitustyön aiheena on rankkauslista liittyen lajiin x. Lajissa x järjestetään useamman joukkueen cup-tyyppisiä turnauksia, joiden ottelukaavio laaditaan joukkueiden rankkausarvojen mukaisesti. Kaavion pohjana käytetään turnaukseen ilmoittautuneiden joukkueiden rankkauspisteitä siten, että korkean rankkausarvon joukkue saa vastaansa korkean rankkausarvon joukkueen vasta loppupeleissä. Joukkueet saavat otteluista rankkauspisteitä, joiden määrä riippuu voitettujen otteluiden määrästä, voitettujen vastustajien rankkausarvoista sekä ylipäätään turnauksessa jaossa olevien rankkauspisteiden määrästä (mikä puolestaan riippuu turnauksen arvostuksesta).
+Harjoitustyön aiheena on rankkauslista liittyen lajiin x. Lajissa x järjestetään useamman joukkueen cup-tyyppisiä turnauksia, joiden ottelukaavio laaditaan joukkueiden rankkauspisteiden mukaisesti. Kaavion pohjana käytetään turnaukseen ilmoittautuneiden joukkueiden sijoitusta sarjataulukossa siten, että sarjataulukon yläpäässä oleva joukkue saa vastaansa toisen korkealle sijoittuneen joukkueen vasta loppupeleissä. Joukkueiden rankkauspisteiden määrä riippuu voitettujen otteluiden määrästä, voitettujen vastustajien sijoituksesta sarjataulukossa sekä ylipäätään turnauksessa jaossa olevien rankkauspisteiden määrästä (mikä puolestaan riippuu turnauksen arvostuksesta).
 
-Rankkauslista pitää kirjaa turnauksista ja niissä jaettavista pisteistä, turnauksiin osallistuvista joukkueista ja niiden rankkausarvoista sekä turnauksien tuloksista. Turnaukset, tulokset ja joukkueet ovat kaikkien nähtävillä. Turnauksen ylläpitäjä tms. päivittää turnauksen tulokset ja joukkueiden rankkausarvot.
+Rankkauslista pitää kirjaa turnauksista ja niissä jaettavista pisteistä, turnauksiin osallistuvista joukkueista ja niiden sijoituksista sekä turnauksien tuloksista. Turnaukset, tulokset ja joukkueet ovat kaikkien nähtävillä. Turnausjärjestäjä päivittää turnauksen tulokset ja joukkueiden sijoitus sarjataulukossa lasketaan saatujen rankkauspisteiden perusteella.
 
 Toimintoja:
 
 * ylläpidon kirjautuminen
 * turnausjärjestäjän kirjautuminen
 * joukkueen luominen, tietojen muokkaus ja poisto  
-* joukkueiden lisääminen turnaukseen  
-* turnaukseen ilmoittautuneiden rankkaus  
+* turnauksen luominen, tietojen muokkaus ja poisto
+* joukkueiden lisääminen turnaukseen
 * turnaustulosten kirjaus ja korjaus  
-* yleinen rankkaustilanteen katselu  
-* lista turnaukseen osallistuneista joukkueista ja heidän sijoittumisensa sekä turnauksen rankkauspistesumma
+* yleinen tulosten tarkastelu ja tulosten järjestäminen joukkueiden, turnausten, rankkauspisteiden ja sijoitusten mukaan
+* tulosten tarkastelu turnaus- ja joukkuekohtaisesti
+* joukkueiden sijoittuminen sarjataulukossa
 
 [Sovellus Herokussa](https://rankkauslista.herokuapp.com/)
 
@@ -24,6 +25,8 @@ Toimintoja:
 [Käyttötapaukset](../master/documentation/kayttotapaukset.md)
 
 [Tietokantakaavio](../master/documentation/tietokantakaavio.png)
+
+[Sovellukseen liittyvät rajoitteet yms.](../master/documentation/parannusehdotuksia.md)
 
 ## Sovelluksen käyttö
 

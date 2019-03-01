@@ -16,15 +16,15 @@ class Result(Base):
 
     @staticmethod
     def list_results(sorter):
-        orderByColumn = "cname DESC"
+        orderByColumn = "cname, rank ASC"
 
         # sqlalchemy ei hyväksy paramsia ORDER BY:lle
         if sorter == "points":
-            orderByColumn = "points DESC"
+            orderByColumn = "points DESC, rank ASC"
         elif sorter == "tname":
-            orderByColumn = "tname DESC"
+            orderByColumn = "tname, rank ASC"
         elif sorter == "rank":
-            orderByColumn = "rank ASC"
+            orderByColumn = "rank ASC, points DESC"
         
 
         stmt = text("SELECT Team.name AS tname, Cup.name AS cname, Result.rank AS rank, Result.points AS points"
@@ -41,6 +41,19 @@ class Result(Base):
 
         return response
 
+    @staticmethod
+    def list_teams_that_are_not_in_results_of_particular_cup(id):
+        stmt = text("SELECT Team.id, Team.name FROM Team WHERE id NOT IN "
+                    "(SELECT Team.id FROM Team, Result "
+                    "WHERE Result.cup_id = :id AND Team.id = Result.team_id)").params(id=id)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"id":row[0], "name":row[1]})
+
+        return response
+    
     @staticmethod
     def find_results_by_cup(id):
         stmt = text("SELECT Team.name, Result.rank, Result.points, Result.id, Cup.account_id"

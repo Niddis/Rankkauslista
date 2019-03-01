@@ -2,15 +2,13 @@ from application import app, db
 from flask import render_template, request, url_for, redirect
 from application.cups.models import Cup
 from application.results.models import Result
-from application.cups.forms import CupForm, CupEditForm
+from application.cups.forms import CupForm
 from flask_login import login_required, current_user
 
 
 @app.route("/cups", methods=["GET"])
 def cups_index():
-    cups = Cup.query.all()
-
-    return render_template("cups/list.html", cups = cups)
+    return render_template("cups/list.html", cups = Cup.query.all())
 
 @app.route("/cups/new/")
 @login_required
@@ -41,7 +39,7 @@ def cups_delete(cup_id):
     c = Cup.query.get(cup_id)
 
     if c.account_id != current_user.id and current_user.isAdmin == False :
-        return render_template("cups/list.html", cups = Cup.query.all(), error = 'Sinulla ei ole oikeuksia poistaa tätä turnausta')
+        return render_template("cups/list.html", cups = Cup.query.all())
 
     db.session.query(Result).filter_by(cup_id=cup_id).delete()
     db.session.delete(c)
@@ -55,7 +53,7 @@ def cups_edit(cup_id):
     c = Cup.query.get(cup_id)
 
     if c.account_id != current_user.id and current_user.isAdmin == False:
-        return render_template("cups/list.html", cups = Cup.query.all(), error = 'Sinulla ei ole oikeuksia muokata tätä turnausta')
+        return render_template("cups/list.html", cups = Cup.query.all())
 
     if request.method == 'GET':
         form = CupForm()

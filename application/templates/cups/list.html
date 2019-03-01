@@ -1,7 +1,12 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
+<h1>Turnaukset</h1>
+<p>Tällä sivulla näet sekä menneet että tulevat turnaukset, niiden alkamis- ja 
+	päättymisajankohdan sekä turnauksissa jaossa olevat rankkauspisteet. 
+	Osallistujat/tulokset-painikkeen takaa löydät turnaukseen osallistuvat joukkueet 
+	sekä turnauskohtaiset tulokset.
+</p>
 	<table class="table table-striped text-center">
 		<thead class="thead-dark">
 			<tr>
@@ -21,18 +26,18 @@
 				<td>{{ cup.points }}</td>
 				<td>
 					<form method="GET" action="{{ url_for('result_form', id=cup.id) }}">
-						<button type="submit" value="osallistujat/tulokset" class="btn btn-primary">osallistujat/tulokset</button>
+						<button type="submit" value="osallistujat/tulokset" class="btn btn-primary">Osallistujat/tulokset</button>
 					</form>
 				</td>
 				{% if current_user.id == cup.account_id or current_user.isAdmin == True %}
 				<td>
 					<form method="GET" action="{{ url_for('cups_edit', cup_id=cup.id) }}">
-						<button type="submit" value="muokkaa" class="btn btn-warning">muokkaa</button>
+						<button type="submit" value="muokkaa" class="btn btn-warning">Muokkaa</button>
 					</form>
 				</td>
 				<td>
 					<form method="POST" action="{{ url_for('cups_delete', cup_id=cup.id) }}">
-						<button type="submit" value="poista" class="btn btn-danger">poista</button>
+						<button type="submit" value="poista" class="btn btn-danger">Poista</button>
 					</form>
 				</td>
 				{% endif %}

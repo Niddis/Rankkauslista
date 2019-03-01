@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+<h1>Turnauksen tietojen päivitys</h1>
+<br />
 <form method="POST">
 		<div class="form-group row">
 				<label class="col-sm-2 col-form-label">{{ form.name.label }}</label>
@@ -54,6 +55,6 @@
 	</div>
 </form>
 <form method="GET" action="{{ url_for('cups_index') }}">
-	<button type="submit" value="Takaisin" class="btn btn-danger">Takaisin</button>
+	<button type="submit" value="Takaisin" class="btn btn-primary">Takaisin</button>
 </form>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3>{{ team.name }}</h3>
+<h1>Sijoitukset: {{ team.name }}</h1>
 <table class="table table-striped table-sm text-center">
 	<thead class="thead-dark">
 		<tr>
@@ -21,6 +21,6 @@
 	</tbody>
 </table>
 <form method="GET" action="{{ url_for('teams_index') }}">
-	<button type="submit" value="Takaisin" class="btn btn-danger">Takaisin</button>
+	<button type="submit" value="Takaisin" class="btn btn-primary">Takaisin</button>
 </form>
 {% endblock %}

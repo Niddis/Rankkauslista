@@ -15,14 +15,13 @@ def results_index():
         select = form.selected.data
         return render_template("results/list.html", form=form, results = Result.list_results(select))
     
-    return render_template("results/list.html", form=form, results = Result.list_results('points'))
+    return render_template("results/list.html", form=form, results = Result.list_results("cname"))
     
 
 @app.route("/results/new/<id>", methods=["GET"])
-#@login_required
 def result_form(id):
     form = ResultForm()
-    form.team_name.choices = [(t.id, t.name) for t in Team.query.order_by(Team.name)]
+    form.team_name.choices = [(t["id"], t["name"]) for t in Result.list_teams_that_are_not_in_results_of_particular_cup(id)]
     return render_template("results/new.html", form = form, results = Result.find_results_by_cup(id), cup = Cup.query.get(id))
 
 @app.route("/results/team/<id>", methods=["GET"])
@@ -38,11 +37,7 @@ def results_create(id):
         return redirect(url_for("result_form", id=id))
         
     form = ResultForm(request.form)
-    result_exists = Result.query.filter_by(cup_id=id, team_id=form.team_name.data).first()
-
-    if result_exists:
-        return redirect(url_for("result_form", id=id))
-        
+  
     r = Result(form.cup_id.data)
     r.cup_id = id
     r.team_id = form.team_name.data
@@ -79,7 +74,7 @@ def results_edit_rank(result_id):
     if request.method == "POST" and form.validate():
         r.rank = form.rank.data
         db.session().commit()
-        return redirect(url_for("result_form", id=r.cup_id))
+        return redirect(url_for("result_form", id=c.id))
 
     return render_template("results/edit.html", form = form, cup = c, team = Team.query.get(r.team_id))
 
@@ -101,6 +96,6 @@ def results_edit_points(result_id):
     if request.method == "POST" and form.validate():
         r.points = form.points.data
         db.session().commit()
-        return redirect(url_for("result_form", id=r.cup_id))
+        return redirect(url_for("result_form", id=c.id))
 
     return render_template("results/editPoints.html", form = form, cup = c, team = Team.query.get(r.team_id))

@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h1>Sarjataulukko</h1>
+<p>Tällä sivulla näet kaikki joukkueet, niiden keräämät kokonaispisteet sekä 
+	sijoituksen sarjataulukossa. Sijoitukset-painikkeen takaa löydät kaikki 
+	kyseisen joukkueen sijoitukset eri turnauksissa.
+</p>
 	<table class="table table-striped text-center">
 		<thead class="thead-dark">
 		<tr>
@@ -20,18 +25,18 @@
 			<td>{{ team.points }}</td>
 			<td>
 				<form method="GET" action="{{ url_for('result_form_for_team', id=team.id) }}">
-					<button type="submit" value="sijoitukset" class="btn btn-primary">sijoitukset</button>
+					<button type="submit" value="Sijoitukset" class="btn btn-primary">Sijoitukset</button>
 				</form>
 			</td>
 			{% if current_user.isAdmin == True %}
 				<td>
-					<form method="POST" action="{{ url_for('teams_delete', team_id=team.id) }}">
-						<button type="submit" value="poista" class="btn btn-danger">poista</button>
+					<form method="GET" action="{{ url_for('teams_edit', team_id=team.id) }}">
+						<button type="submit" value="Muokkaa" class="btn btn-warning">Muokkaa</button>
 					</form>
 				</td>
 				<td>
-					<form method="GET" action="{{ url_for('teams_edit', team_id=team.id) }}">
-						<button type="submit" value="muokkaa" class="btn btn-warning">muokkaa</button>
+					<form method="POST" action="{{ url_for('teams_delete', team_id=team.id) }}">
+						<button type="submit" value="Poista" class="btn btn-danger">Poista</button>
 					</form>
 				</td>
 				{% endif %}

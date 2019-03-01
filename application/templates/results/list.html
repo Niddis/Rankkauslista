@@ -1,10 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h1>Kaikki tulokset</h1>
+<p>Tällä sivulla näet kaikkien turnausten tulokset. Voit järjestää tuloksia joukkueen, turnauksen, sijoitusten 
+	tai joukkueen saamien pisteiden mukaan. Jos haluat tarkastella pelkästään tietyn 
+	turnauksen tuloksia, löydät ne Turnaukset-sivulta. Vastaavasti tietyn joukkueen 
+	sijoituksia voit tarkastella Joukkueet-sivulla.</p>
 <form method="POST" action="{{ url_for('results_index') }}">
-	{{ form.selected.label }} {{ form.selected }}
-	<button type="submit" value="Valitse" class="btn btn-primary">Valitse</button>
+		<div class="form-check form-check-inline">
+			{% for subfield in form.selected %}
+			<span>{{ subfield }}  {{ subfield.label }}</span>
+			{% endfor %}
+</div>
+	<button type="submit" value="Järjestä" class="btn btn-primary">Järjestä</button>
 </form>
+<br />
+<br />
 	<table class="table table-striped table-sm text-center">
 		<thead class="thead-dark">
 		<tr>
