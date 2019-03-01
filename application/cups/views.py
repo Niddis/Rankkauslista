@@ -8,7 +8,7 @@ from flask_login import login_required, current_user
 
 @app.route("/cups", methods=["GET"])
 def cups_index():
-    return render_template("cups/list.html", cups = Cup.query.all())
+    return render_template("cups/list.html", cups = Cup.query.order_by(Cup.name).all())
 
 @app.route("/cups/new/")
 @login_required
