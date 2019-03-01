@@ -1,3 +1,4 @@
+```
 CREATE TABLE Team (
     id integer PRIMARY KEY,
     date_created datetime,
@@ -5,7 +6,9 @@ CREATE TABLE Team (
     name varchar(144),
     home varchar(144)
 );
+```
 
+```
 CREATE TABLE Account (
     id integer PRIMARY KEY,
     date_created datetime,
@@ -15,7 +18,9 @@ CREATE TABLE Account (
     password varchar(144),
     isAdmin boolean
 );
+```
 
+```
 CREATE TABLE Cup (
     id integer PRIMARY KEY,
     date_created datetime,
@@ -27,7 +32,9 @@ CREATE TABLE Cup (
     points integer,
     FOREIGN KEY (account_id) REFERENCES Account(id)
 );
+```
 
+```
 CREATE TABLE Result (
     id integer PRIMARY KEY,
     date_created datetime,
@@ -38,4 +45,5 @@ CREATE TABLE Result (
     points integer,
     FOREIGN KEY (team_id) REFERENCES Team(id),
     FOREIGN KEY (cup_id) REFERENCES Cup(id)
-)
+);
+```
